@@ -34,6 +34,7 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+typedef void (*op_func)(stack_t **stack, unsigned int line_number);
 /*functions that treats files*/
 void open_file(char *file_name);
 int parse_line(char *buffer, int line_number, int format);
