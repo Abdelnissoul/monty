@@ -39,8 +39,8 @@ stack_t *create_node(int n)
 }
 
 /**
- * free_nodes - Frees nodes in the stack.
- * not returning anything just frees the stack
+ * free_nodes - function that frees nodes in the stack.
+ * it frees the stack from all data
  */
 void free_nodes(void)
 {
