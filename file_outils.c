@@ -11,9 +11,9 @@ void open_file(char *file_name)
 	FILE *fd = fopen(file_name, "r");
 
 	if (file_name == NULL || fd == NULL)
-    {
-     err_handle(2, file_name);   
-    }
+	{
+		err_handle(2, file_name);   
+	}
 	read_file(fd);
 	fclose(fd);
 }
@@ -46,28 +46,29 @@ void read_file(FILE *fd)
  */
 int parse_line(char *buffer, int line_number, int format)
 {
-	char *opcode, *value;
+	char *opcode;
+	char *value;
 	const char *delim = "\n ";
 
 	if (buffer == NULL)
-    {
-        err_handle(4);
-    }
+	{
+		err_handle(4);
+	}
 	opcode = strtok(buffer, delim);
 	if (opcode == NULL)
-    {
-        return (format);
-    }
+	{
+		return (format);
+	}
 	value = strtok(NULL, delim);
 
 	if (strcmp(opcode, "stack") == 0)
-    {
-        return (0);
-    }
+	{
+		return (0);
+	}
 	if (strcmp(opcode, "queue") == 0)
-    {
-        return (1);
-    }
+	{
+		return (1);
+	}
 	find_func(opcode, value, line_number, format);
 	return (format);
 }
@@ -106,8 +107,9 @@ void find_func(char *opcode, char *value, int ln, int format)
 	};
 
 	if (opcode[0] == '#')
+	{
 		return;
-
+	}
 	for (flag = 1, a = 0; func_list[a].opcode != NULL; a++)
 	{
 		if (strcmp(opcode, func_list[a].opcode) == 0)
@@ -120,14 +122,13 @@ void find_func(char *opcode, char *value, int ln, int format)
 		err_handle(3, ln, opcode);
 }
 
-
 /**
  * call_fun - Calls the required function.
  * @func: Pointer to the function that is about to be called.
  * @op: string representing the opcode.
  * @val: string representing a numeric value.
  * @ln: line numeber for the instruction.
- * @format: Format specifier. If 0 Nodes will be entered as a stack.
+ * @format: Format specifier
  * if 1 nodes will be entered as a queue.
  */
 void call_fun(op_func func, char *op, char *val, int ln, int format)
@@ -145,25 +146,25 @@ void call_fun(op_func func, char *op, char *val, int ln, int format)
 			flag = -1;
 		}
 		if (val == NULL)
-        {
-            err_handle(5, ln);
-        }
+		{
+			err_handle(5, ln);
+		}
 		for (a = 0; val[a] != '\0'; a++)
 		{
 			if (isdigit(val[a]) == 0)
-            {
-                err_handle(5, ln);
-            }
+			{
+				err_handle(5, ln);
+			}
 		}
 		node = create_node(atoi(val) * flag);
 		if (format == 0)
-        {
-            func(&node, ln);
-        }
+		{
+			func(&node, ln);
+		}
 		if (format == 1)
-        {
-            add_to_queue(&node, ln);
-        }
+		{
+			add_to_queue(&node, ln);
+		}
 	}
 	else
 		func(&head, ln);
