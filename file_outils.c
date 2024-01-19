@@ -12,7 +12,7 @@ void open_file(char *file_name)
 
 	if (file_name == NULL || fd == NULL)
 	{
-		err_handle(2, file_name);   
+		err_handle(2, file_name);
 	}
 	read_file(fd);
 	fclose(fd);

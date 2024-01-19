@@ -11,9 +11,9 @@ void add_to_stack(stack_t **new_node, __attribute__((unused))unsigned int ln)
 	stack_t *ptr;
 
 	if (new_node == NULL || *new_node == NULL)
-    {
-        exit(EXIT_FAILURE);
-    }
+	{
+		exit(EXIT_FAILURE);
+	}
 	if (head == NULL)
 	{
 		head = *new_node;
@@ -24,7 +24,6 @@ void add_to_stack(stack_t **new_node, __attribute__((unused))unsigned int ln)
 	head->next = ptr;
 	ptr->prev = head;
 }
-
 
 /**
  * print_stack - Adds a node to the stack.
@@ -37,9 +36,9 @@ void print_stack(stack_t **stack, unsigned int line_number)
 
 	(void) line_number;
 	if (stack == NULL)
-    {
-        exit(EXIT_FAILURE);
-    }
+	{
+		exit(EXIT_FAILURE);
+	}
 	ptr = *stack;
 	while (ptr != NULL)
 	{
@@ -58,15 +57,15 @@ void pop_top(stack_t **stack, unsigned int line_number)
 	stack_t *ptr;
 
 	if (stack == NULL || *stack == NULL)
-    {
-        more_err_handle(7, line_number);
-    }
+	{
+		more_err_handle(7, line_number);
+	}
 	ptr = *stack;
 	*stack = ptr->next;
 	if (*stack != NULL)
-    {
-        (*stack)->prev = NULL;
-    }
+	{
+		(*stack)->prev = NULL;
+	}
 	free(ptr);
 }
 /**
@@ -78,8 +77,8 @@ void pop_top(stack_t **stack, unsigned int line_number)
 void print_top(stack_t **stack, unsigned int line_number)
 {
 	if (stack == NULL || *stack == NULL)
-    {
-        more_err_handle(6, line_number);
-    }
+	{
+		more_err_handle(6, line_number);
+	}
 	printf("%d\n", (*stack)->n);
 }

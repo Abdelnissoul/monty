@@ -31,7 +31,9 @@ stack_t *create_node(int n)
 
 	node = malloc(sizeof(stack_t));
 	if (node == NULL)
+	{
 		err_handle(4);
+	}
 	node->next = NULL;
 	node->prev = NULL;
 	node->n = n;
@@ -47,8 +49,9 @@ void free_nodes(void)
 	stack_t *ptr;
 
 	if (head == NULL)
+	{
 		return;
-
+	}
 	while (head != NULL)
 	{
 		ptr = head;
@@ -56,7 +59,6 @@ void free_nodes(void)
 		free(ptr);
 	}
 }
-
 
 /**
  * add_to_queue - Adds a node to the queue.
@@ -68,7 +70,9 @@ void add_to_queue(stack_t **new_node, __attribute__((unused))unsigned int ln)
 	stack_t *ptr;
 
 	if (new_node == NULL || *new_node == NULL)
+	{
 		exit(EXIT_FAILURE);
+	}
 	if (head == NULL)
 	{
 		head = *new_node;
@@ -76,9 +80,9 @@ void add_to_queue(stack_t **new_node, __attribute__((unused))unsigned int ln)
 	}
 	ptr = head;
 	while (ptr->next != NULL)
+	{
 		ptr = ptr->next;
-
+	}
 	ptr->next = *new_node;
 	(*new_node)->prev = ptr;
-
 }

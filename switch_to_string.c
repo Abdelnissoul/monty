@@ -10,14 +10,14 @@ void print_char(stack_t **stack, unsigned int line_number)
 	int ascii_value;
 
 	if (stack == NULL || *stack == NULL)
-    {
+	{
 		string_err_handle(11, line_number);
-    }
+	}
 	ascii_value = (*stack)->n;
 	if (ascii_value < 0 || ascii_value > 127)
-    {
-        string_err_handle(10, line_number);
-    }
+	{
+		string_err_handle(10, line_number);
+	}
 	printf("%c\n", ascii_value);
 }
 
@@ -42,9 +42,9 @@ void print_str(stack_t **stack, __attribute__((unused))unsigned int ln)
 	{
 		ascii_value = ptr->n;
 		if (ascii_value <= 0 || ascii_value > 127)
-        {
-            break;
-        }
+		{
+			break;
+		}
 		printf("%c", ascii_value);
 		ptr = ptr->next;
 	}
@@ -61,14 +61,14 @@ void rotleft(stack_t **stack, __attribute__((unused))unsigned int ln)
 	stack_t *ptr;
 
 	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
+	{
 		return;
-
+	}
 	ptr = *stack;
 	while (ptr->next != NULL)
-    {
-        ptr = ptr->next;
-    }
-
+	{
+		ptr = ptr->next;
+	}
 	ptr->next = *stack;
 	(*stack)->prev = ptr;
 	*stack = (*stack)->next;
@@ -76,26 +76,25 @@ void rotleft(stack_t **stack, __attribute__((unused))unsigned int ln)
 	(*stack)->prev = NULL;
 }
 
-
 /**
- * rotright - Rotates the last node of the stack to the top.
- * @stack: Pointer to a pointer pointing to top node of the stack.
- * @ln: Interger representing the line number of of the opcode.
+ * rotright - function that rotates the last node of the stack to the top.
+ * @stack: Pointer to a pointer pointing to top node.
+ * @ln: the line number of of the opcode.
  */
 void rotright(stack_t **stack, __attribute__((unused))unsigned int ln)
 {
 	stack_t *ptr;
 
 	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
+	{
 		return;
-
+	}
 	ptr = *stack;
 
 	while (ptr->next != NULL)
-    {
-        ptr = ptr->next;
-    }
-
+	{
+		ptr = ptr->next;
+	}
 	ptr->next = *stack;
 	ptr->prev->next = NULL;
 	ptr->prev = NULL;
